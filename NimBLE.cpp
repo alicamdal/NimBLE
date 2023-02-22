@@ -2,5 +2,5 @@
 
 void NimBLE::init()
 {
-    printf("selam");
+    printf("selam\n");
 }
