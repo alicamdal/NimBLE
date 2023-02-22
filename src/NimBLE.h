@@ -1,5 +1,6 @@
 #ifndef NimBLE_H
 #define NimBLE_H
+#define FROM_BLE 1
 #include "iostream"
 #include "BLE/NimBLEDevice.h"
 #include "freertos/queue.h"
