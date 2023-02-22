@@ -42,8 +42,6 @@ void NimBLE::onWrite(BLECharacteristic *pCharacteristic, BLEConnInfo &connInfo)
   if (income.length() > 3)
   {
     this->rxValue = income;
-    this->rxValue.erase(0, 1);
-    this->rxValue.erase(this->rxValue.length() - 1);
     this->is_available = true;
     this->bleEvent(this->rxValue, 1);
   }
