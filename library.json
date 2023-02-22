@@ -1,0 +1,23 @@
+{
+    "name": "NimBLE",
+    "version": "1.0.0",
+    "description": "NimBLE library for ESP32-IDF",
+    "keywords": "espressif, NimBLE",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/alicamdal/NimBLE"
+    },
+    "authors":
+    [
+      {
+        "name": "Ali Camdal",
+        "email": "camdala@tcd.ie",
+        "maintainer": true
+      }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/alicamdal/NimBLE",
+    "frameworks": "*",
+    "platforms": "espressif"
+  }

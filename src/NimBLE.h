@@ -1,8 +1,8 @@
-#ifndef KKBLE_H
-#define KKBLE_H
+#ifndef NimBLE_H
+#define NimBLE_H
 #define PROTOCOL
 #include "iostream"
-#include "NimBLEDevice.h"
+#include "BLE/NimBLEDevice.h"
 #include "freertos/queue.h"
 
 using namespace std;
