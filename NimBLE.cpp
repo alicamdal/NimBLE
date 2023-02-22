@@ -1,6 +1,6 @@
-#include <stdio.h>
 #include "NimBLE.h"
 
-void func(void)
+void NimBLE::init()
 {
+    printf("selam");
 }
