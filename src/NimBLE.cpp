@@ -16,12 +16,6 @@ void queueTask(void *pvParams)
   }
 }
 
-void NimBLE::setHandler(TaskHandle_t ble_control_handler)
-{
-  this->is_handler_invoked = true;
-  this->ble_handler = ble_control_handler;
-}
-
 void NimBLE::onConnect(BLEServer *pServer, BLEConnInfo &connInfo)
 {
   this->deviceConnected = true;
@@ -30,10 +24,6 @@ void NimBLE::onConnect(BLEServer *pServer, BLEConnInfo &connInfo)
 void NimBLE::onDisconnect(BLEServer *pServer, BLEConnInfo &connInfo, int reason)
 {
   this->deviceConnected = false;
-  if (this->is_handler_invoked)
-  {
-    vTaskResume(this->ble_handler);
-  }
 }
 
 void NimBLE::onWrite(BLECharacteristic *pCharacteristic, BLEConnInfo &connInfo)
@@ -63,7 +53,7 @@ void NimBLE::setReaderHandler(void (*func)(string msg, size_t select))
   this->bleEvent = func;
 }
 
-void NimBLE::init_ble(string ble_name)
+void NimBLE::initBle(string ble_name)
 {
   BLEDevice::init(ble_name);
   this->pServer = BLEDevice::createServer();
@@ -83,7 +73,7 @@ void NimBLE::init_ble(string ble_name)
   xTaskCreate(queueTask, "queue_task", 4096, this, 2, NULL);
 }
 
-void NimBLE::start_adv()
+void NimBLE::startAdv()
 {
   this->pService->start();
   this->pServer->getAdvertising()->start();
@@ -96,11 +86,5 @@ bool NimBLE::isConnected()
 
 void NimBLE::pushQueue(char *buf)
 {
-  char first_checksum[50] = "|";
-  char second_checksum[] = "!";
-
-  strcat(first_checksum, buf);
-  strcat(first_checksum, second_checksum);
-
-  xQueueSend(this->queue_handler, first_checksum, (TickType_t)0);
+  xQueueSend(this->queue_handler, buf, (TickType_t)0);
 }

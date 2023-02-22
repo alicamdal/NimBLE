@@ -1,6 +1,5 @@
 #ifndef NimBLE_H
 #define NimBLE_H
-#define PROTOCOL
 #include "iostream"
 #include "BLE/NimBLEDevice.h"
 #include "freertos/queue.h"
@@ -12,10 +11,6 @@ class NimBLE : public BLEServerCallbacks, public BLECharacteristicCallbacks
 
 private:
     bool is_available = false;
-    bool is_handler_invoked = false;
-#ifdef PROTOCOL
-    TaskHandle_t ble_handler;
-#endif
     bool deviceConnected = false;
     friend void queueTask(void *pvParams);
     void onConnect(BLEServer *pServer, BLEConnInfo &connInfo);
@@ -32,14 +27,10 @@ private:
     BLECharacteristic *pRxCharacteristic;
 
 public:
-    void init_ble(string ble_name);
-    void start_adv(void);
+    void initBle(string ble_name);
+    void startAdv(void);
     bool isConnected(void);
     void pushQueue(char *buf);
-#ifdef PROTOCOL
-    void setHandler(TaskHandle_t ble_control_handler);
-#endif
-    // void bleEvent(string msg);
     string rxValue = "";
     string old_rxValue = "";
     void (*bleEvent)(string msg, size_t select);
