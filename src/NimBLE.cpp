@@ -39,7 +39,7 @@ void NimBLE::onDisconnect(BLEServer *pServer, BLEConnInfo &connInfo, int reason)
 void NimBLE::onWrite(BLECharacteristic *pCharacteristic, BLEConnInfo &connInfo)
 {
   string income = pCharacteristic->getValue();
-  if (income.length() > 3)
+  if (income.length() > 1)
   {
     this->rxValue = income;
     this->is_available = true;
