@@ -3,7 +3,7 @@
 NimBLE ble;
 void bleEvent(string msg, size_t select);
 
-void app_main()
+extern "C" void app_main()
 {
     ble.initBle("BLE_NAME");
     ble.startAdv();
