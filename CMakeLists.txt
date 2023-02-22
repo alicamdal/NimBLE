@@ -1,2 +1,2 @@
-idf_component_register(SRCS "NimBLe.c"
+idf_component_register(SRCS "NimBLE.c"
                     INCLUDE_DIRS "include")
