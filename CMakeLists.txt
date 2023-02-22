@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
-FILE(GLOB_RECURSE app_sources ${CMAKE_SOURCE_DIR}/main/*.*)
-
-
 idf_component_register(
-    SRCS ${app_sources}
+    SRCS "NimBLE.cpp"
     INCLUDE_DIRS "include"
     INCLUDE_DIRS "include/BLE"
     REQUIRES bt
